@@ -1,11 +1,11 @@
 ---
 
-description: "Task list template for feature implementation"
+description: "Task list for todo CLI app implementation"
 ---
 
-# Tasks: [FEATURE NAME]
+# Tasks: Evolution of Todo – Phase I: In-Memory Python Console App
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
+**Input**: Design documents from `/specs/1-todo-cli-app/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
 **Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
@@ -34,34 +34,15 @@ These tasks ensure compliance with the Evolution of Todo Constitution by:
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
 
-<!--
-  ============================================================================
-  IMPORTANT: The tasks below are SAMPLE TASKS for illustration purposes only.
-
-  The /sp.tasks command MUST replace these with actual tasks based on:
-  - User stories from spec.md (with their priorities P1, P2, P3...)
-  - Feature requirements from plan.md
-  - Entities from data-model.md
-  - Endpoints from contracts/
-
-  Tasks MUST be organized by user story so each story can be:
-  - Implemented independently
-  - Tested independently
-  - Delivered as an MVP increment
-
-  DO NOT keep these sample tasks in the generated tasks.md file.
-  ============================================================================
--->
-
 ## Phase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create project structure per implementation plan with proper Python package layout
-- [ ] T002 Initialize Python project with UV for dependency management
-- [ ] T003 [P] Configure linting (Ruff) and formatting (Black) tools as per constitution
-- [ ] T004 Set up mypy configuration for type checking as per constitution
-- [ ] T005 Create CLAUDE.md to document AI agent prompts and workflow
+- [X] T001 Create project structure per implementation plan with proper Python package layout
+- [X] T002 Initialize Python project with UV for dependency management
+- [X] T003 [P] Configure linting (Ruff) and formatting (Black) tools as per constitution
+- [X] T004 Set up mypy configuration for type checking as per constitution
+- [X] T005 Create CLAUDE.md to document AI agent prompts and workflow
 
 ---
 
@@ -71,85 +52,70 @@ These tasks ensure compliance with the Evolution of Todo Constitution by:
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-Examples of foundational tasks (adjust based on your project):
-
-- [ ] T006 Create Task model with type hints and docstrings in src/todo/core/models.py
-- [ ] T007 [P] Create TaskService with type hints and docstrings in src/todo/core/services.py
-- [ ] T008 [P] Setup CLI interface structure in src/todo/cli/interface.py
-- [ ] T009 Configure error handling and logging infrastructure
-- [ ] T010 Setup environment configuration management
+- [X] T006 Create Task dataclass with type hints and docstrings in src/todo/core/models.py
+- [X] T007 [P] Create InMemoryTodoRepository with type hints and docstrings in src/todo/core/services.py
+- [X] T008 [P] Setup CLI interface structure in src/todo/cli/interface.py
+- [X] T009 Configure error handling and logging infrastructure
+- [X] T010 Setup environment configuration management
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
 ---
 
-## Phase 3: User Story 1 - [Title] (Priority: P1) 🎯 MVP
+## Phase 3: User Story 1 - Add and View Tasks (Priority: P1) 🎯 MVP
 
-**Goal**: [Brief description of what this story delivers]
+**Goal**: Enable users to add tasks to their todo list and view them so that they can keep track of what they need to do.
 
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
-
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
-
-- [ ] T011 [P] [US1] Unit test for Task model in tests/unit/test_models.py
-- [ ] T012 [P] [US1] Integration test for [user journey] in tests/integration/test_cli.py
+**Independent Test**: Can be fully tested by adding a task and then listing all tasks to verify it appears in the list with the correct details.
 
 ### Implementation for User Story 1
 
-- [ ] T013 [P] [US1] Implement Add Task functionality in src/todo/core/services.py
-- [ ] T014 [US1] Implement CLI command for adding tasks in src/todo/cli/interface.py
-- [ ] T015 [US1] Add validation and error handling for task creation
-- [ ] T016 [US1] Add logging for task creation operations
+- [X] T011 [P] [US1] Implement Task dataclass with id, title, description, and completed fields in src/todo/core/models.py
+- [X] T012 [P] [US1] Implement add_task method in InMemoryTodoRepository in src/todo/core/services.py
+- [X] T013 [US1] Implement get_all_tasks method in InMemoryTodoRepository in src/todo/core/services.py
+- [X] T014 [US1] Implement CLI menu display for adding and viewing tasks in src/todo/cli/interface.py
+- [X] T015 [US1] Implement CLI command for adding tasks in src/todo/cli/interface.py
+- [X] T016 [US1] Implement CLI command for viewing tasks in src/todo/cli/interface.py
+- [X] T017 [US1] Add validation to ensure title is not empty in src/todo/core/services.py
+- [X] T018 [US1] Add logging for task creation and viewing operations
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
 ---
 
-## Phase 4: User Story 2 - [Title] (Priority: P2)
+## Phase 4: User Story 2 - Update and Mark Complete Tasks (Priority: P2)
 
-**Goal**: [Brief description of what this story delivers]
+**Goal**: Enable users to update their tasks and mark them as complete so that they can track their progress and modify task details as needed.
 
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T017 [P] [US2] Unit test for task deletion in tests/unit/test_models.py
-- [ ] T018 [P] [US2] Integration test for [user journey] in tests/integration/test_cli.py
+**Independent Test**: Can be fully tested by adding a task, updating its details, and marking it as complete to verify the status changes.
 
 ### Implementation for User Story 2
 
-- [ ] T019 [P] [US2] Implement Delete Task functionality in src/todo/core/services.py
-- [ ] T020 [US2] Implement CLI command for deleting tasks in src/todo/cli/interface.py
-- [ ] T021 [US2] Integrate with User Story 1 components (if needed)
+- [X] T019 [P] [US2] Implement update_task method in InMemoryTodoRepository in src/todo/core/services.py
+- [X] T020 [P] [US2] Implement toggle_task_completion method in InMemoryTodoRepository in src/todo/core/services.py
+- [X] T021 [US2] Implement CLI command for updating tasks in src/todo/cli/interface.py
+- [X] T022 [US2] Implement CLI command for marking tasks complete/incomplete in src/todo/cli/interface.py
+- [X] T023 [US2] Add validation for task ID existence in src/todo/core/services.py
+- [X] T024 [US2] Add logging for task update and completion operations
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
 ---
 
-## Phase 5: User Story 3 - [Title] (Priority: P3)
+## Phase 5: User Story 3 - Delete Tasks (Priority: P3)
 
-**Goal**: [Brief description of what this story delivers]
+**Goal**: Enable users to delete tasks from their list so that they can remove items that are no longer relevant.
 
-**Independent Test**: [How to verify this story works on its own]
-
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T022 [P] [US3] Unit test for task update in tests/unit/test_models.py
-- [ ] T023 [P] [US3] Integration test for [user journey] in tests/integration/test_cli.py
+**Independent Test**: Can be fully tested by adding a task and then deleting it to verify it no longer appears in the task list.
 
 ### Implementation for User Story 3
 
-- [ ] T024 [P] [US3] Implement Update Task functionality in src/todo/core/services.py
-- [ ] T025 [US3] Implement CLI command for updating tasks in src/todo/cli/interface.py
-- [ ] T026 [US3] Implement View Tasks functionality in src/todo/core/services.py
+- [X] T025 [P] [US3] Implement delete_task method in InMemoryTodoRepository in src/todo/core/services.py
+- [X] T026 [US3] Implement CLI command for deleting tasks in src/todo/cli/interface.py
+- [X] T027 [US3] Add validation for task ID existence before deletion in src/todo/core/services.py
+- [X] T028 [US3] Add logging for task deletion operations
 
 **Checkpoint**: All user stories should now be independently functional
-
----
-
-[Add more user story phases as needed, following the same pattern]
 
 ---
 
@@ -157,10 +123,10 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Ensure all Basic Level features are implemented as per constitution
 
-- [ ] T027 Implement Mark Complete functionality in src/todo/core/services.py
-- [ ] T028 Implement CLI command for marking tasks complete in src/todo/cli/interface.py
-- [ ] T029 Verify all 5 Basic Level features work: Add, Delete, Update, View, Mark Complete
-- [ ] T030 Test all Basic Level features interactively as per constitution success criteria
+- [X] T029 Implement CLI main loop with menu options in src/todo/cli/interface.py
+- [X] T030 Implement CLI entry point in src/todo/__main__.py
+- [X] T031 Verify all 5 Basic Level features work: Add, Delete, Update, View, Mark Complete
+- [X] T032 Test all Basic Level features interactively as per constitution success criteria
 
 ---
 
@@ -168,25 +134,25 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Ensure all constitution standards are met
 
-- [ ] T031 Verify all functions have type hints as per constitution
-- [ ] T032 Verify all public functions and classes have docstrings as per constitution
-- [ ] T033 Run mypy and ensure zero errors as per constitution
-- [ ] T034 Run Ruff/Black and ensure PEP 8 compliance as per constitution
-- [ ] T035 Verify all generated code is traceable to its originating specification
-- [ ] T036 Update README.md with setup and usage instructions as per constitution
+- [X] T033 Verify all functions have type hints as per constitution
+- [X] T034 Verify all public functions and classes have docstrings as per constitution
+- [X] T035 Run mypy and ensure zero errors as per constitution
+- [X] T036 Run Ruff/Black and ensure PEP 8 compliance as per constitution
+- [X] T037 Verify all generated code is traceable to its originating specification
+- [X] T038 Update README.md with setup and usage instructions as per constitution
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+## Phase 8: Polish & Cross-Cutting Concerns
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T037 [P] Documentation updates in docs/
-- [ ] T038 Code cleanup and refactoring
-- [ ] T039 Performance optimization across all stories
-- [ ] T040 [P] Additional unit tests (if requested) in tests/unit/
-- [ ] T041 Security hardening
-- [ ] T042 Run quickstart.md validation
+- [X] T039 [P] Documentation updates in docs/
+- [X] T040 Code cleanup and refactoring
+- [X] T041 Performance optimization across all stories
+- [X] T042 [P] Additional unit tests (if requested) in tests/unit/
+- [X] T043 Security hardening
+- [X] T044 Run quickstart.md validation
 
 ---
 
@@ -211,7 +177,6 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Tests (if included) MUST be written and FAIL before implementation
 - Models before services
 - Services before endpoints
 - Core implementation before integration
@@ -222,8 +187,7 @@ Examples of foundational tasks (adjust based on your project):
 - All Setup tasks marked [P] can run in parallel
 - All Foundational tasks marked [P] can run in parallel (within Phase 2)
 - Once Foundational phase completes, all user stories can start in parallel (if team capacity allows)
-- All tests for a user story marked [P] can run in parallel
-- Models within a story marked [P] can run in parallel
+- All models within a story marked [P] can run in parallel
 - Different user stories can be worked on in parallel by different team members
 
 ---
@@ -231,13 +195,9 @@ Examples of foundational tasks (adjust based on your project):
 ## Parallel Example: User Story 1
 
 ```bash
-# Launch all tests for User Story 1 together (if tests requested):
-Task: "Unit test for Task model in tests/unit/test_models.py"
-Task: "Integration test for [user journey] in tests/integration/test_cli.py"
-
 # Launch all models for User Story 1 together:
-Task: "Implement Add Task functionality in src/todo/core/services.py"
-Task: "Implement CLI command for adding tasks in src/todo/cli/interface.py"
+Task: "Implement Task dataclass with id, title, description, and completed fields in src/todo/core/models.py"
+Task: "Implement add_task method in InMemoryTodoRepository in src/todo/core/services.py"
 ```
 
 ---
@@ -280,7 +240,6 @@ With multiple developers:
 - [P] tasks = different files, no dependencies
 - [Story] label maps task to specific user story for traceability
 - Each user story should be independently completable and testable
-- Verify tests fail before implementing
 - Commit after each task or logical group
 - Stop at any checkpoint to validate story independently
 - Avoid: vague tasks, same file conflicts, cross-story dependencies that break independence
